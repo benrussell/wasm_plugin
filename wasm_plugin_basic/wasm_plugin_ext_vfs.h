@@ -32,6 +32,70 @@ void test_vfs(){
 
     closedir(dir);
 
+
+
+    {
+
+        DIR* dir = opendir("/X-Plane");
+        if (dir == nullptr) {
+            printf("wasm/ vfs root is a nullptr?\n");
+            perror("opendir");
+            return;
+        }
+
+        struct dirent* entry;
+        while ((entry = readdir(dir)) != nullptr) {
+            printf("wasm/     vfs://X-Plane/%s\n", entry->d_name);
+        }
+
+        closedir(dir);
+
+    }
+
+
+
+    {
+
+        DIR* dir = opendir("/Aircraft");
+        if (dir == nullptr) {
+            printf("wasm/ vfs://Aircraft is a nullptr?\n");
+            perror("opendir");
+            return;
+        }
+
+        struct dirent* entry;
+        while ((entry = readdir(dir)) != nullptr) {
+            printf("wasm/     vfs://Aircraft/%s\n", entry->d_name);
+        }
+
+        closedir(dir);
+
+    }
+
+
+
+
+    {
+
+        DIR* dir = opendir("/X-Plane/Aircraft");
+        if (dir == nullptr) {
+            printf("wasm/ vfs://X-Plane/Aircraft is a nullptr?\n");
+            perror("opendir");
+            return;
+        }
+
+        struct dirent* entry;
+        while ((entry = readdir(dir)) != nullptr) {
+            printf("wasm/     vfs://X-Plane/Aircraft/%s\n", entry->d_name);
+        }
+
+        closedir(dir);
+
+    }
+
+
+
+
 }
 
 
