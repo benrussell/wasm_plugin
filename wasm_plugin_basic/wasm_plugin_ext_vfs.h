@@ -13,88 +13,50 @@
 
 
 
+
+void list_dir( const char* target ){
+
+    printf("wasm/ list_dir(%s)\n", target);
+
+
+     DIR* dir = opendir( target );
+        if (dir == nullptr) {
+            printf("wasm/ vfs 404:[%s]\n", target);
+            perror("opendir");
+            return;
+        }
+
+        struct dirent* entry;
+        while ((entry = readdir(dir)) != nullptr) {
+
+            if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) {
+                continue;
+            }
+
+            printf("wasm/  vfs:/%s/%s\n", target, entry->d_name);
+        }
+
+        closedir(dir);
+
+}
+
+
+
+
 void test_vfs(){
 
     // List all files in the current folder using filesystem APIs
-    printf("wasm/ Listing files in the current folder:\n");
-
-    DIR* dir = opendir(".");
-    if (dir == nullptr) {
-        printf("wasm/ vfs root is a nullptr?\n");
-        perror("opendir");
-        return;
-    }
-
-    struct dirent* entry;
-    while ((entry = readdir(dir)) != nullptr) {
-        printf("wasm/     vfs://%s\n", entry->d_name);
-    }
-
-    closedir(dir);
+    printf("wasm/ test_vfs()\n");
 
 
+    list_dir("/");
 
-    {
-
-        DIR* dir = opendir("/X-Plane");
-        if (dir == nullptr) {
-            printf("wasm/ vfs root is a nullptr?\n");
-            perror("opendir");
-            return;
-        }
-
-        struct dirent* entry;
-        while ((entry = readdir(dir)) != nullptr) {
-            printf("wasm/     vfs://X-Plane/%s\n", entry->d_name);
-        }
-
-        closedir(dir);
-
-    }
-
-
-
-    {
-
-        DIR* dir = opendir("/Aircraft");
-        if (dir == nullptr) {
-            printf("wasm/ vfs://Aircraft is a nullptr?\n");
-            perror("opendir");
-            return;
-        }
-
-        struct dirent* entry;
-        while ((entry = readdir(dir)) != nullptr) {
-            printf("wasm/     vfs://Aircraft/%s\n", entry->d_name);
-        }
-
-        closedir(dir);
-
-    }
-
-
-
-
-    {
-
-        DIR* dir = opendir("/X-Plane/Aircraft");
-        if (dir == nullptr) {
-            printf("wasm/ vfs://X-Plane/Aircraft is a nullptr?\n");
-            perror("opendir");
-            return;
-        }
-
-        struct dirent* entry;
-        while ((entry = readdir(dir)) != nullptr) {
-            printf("wasm/     vfs://X-Plane/Aircraft/%s\n", entry->d_name);
-        }
-
-        closedir(dir);
-
-    }
-
-
-
+    list_dir("/X-Plane");
+    list_dir("/X-Plane/Aircraft");
+    list_dir("/X-Plane/Resources/plugins");
+    
+    list_dir("/Aircraft");
+    list_dir("/Aircraft/plugins");
 
 }
 
