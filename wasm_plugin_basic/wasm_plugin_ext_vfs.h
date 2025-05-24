@@ -48,15 +48,14 @@ void test_vfs(){
     // List all files in the current folder using filesystem APIs
     printf("wasm/ test_vfs()\n");
 
-
     list_dir("/");
 
-    list_dir("/X-Plane");
-    list_dir("/X-Plane/Aircraft");
-    list_dir("/X-Plane/Resources/plugins");
+    // list_dir("/X-Plane");
+    // list_dir("/X-Plane/Aircraft");
+    // list_dir("/X-Plane/Resources/plugins");
     
-    list_dir("/Aircraft");
-    list_dir("/Aircraft/plugins");
+    // list_dir("/Aircraft");
+    // list_dir("/Aircraft/plugins");
 
 }
 

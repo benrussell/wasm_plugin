@@ -35,26 +35,13 @@ int main(void){
 
 
 int plugin_start(char* outName, char* outSig, char* outDesc) {
-    #if 0
-    // printf("wasm/ plugin_start: [%p], [%p], [%p]\n", outName, outSig, outDesc );
-    // printf("wasm/ plugin_start: [%s], [%s], [%s]\n", outName, outSig, outDesc );
-    //fflush( stdout );
-    #endif
-
-    #if 0
-    printf("wasm/ plugin_start(); calling std::cout..\n");
-    // this crashes if WASI has not been init correctly.
-    // host must call _start() which calls __wasi_ctors() 
-    // CPP io stream test
-    std::cout << "wasm/   std::cout works.\n";
-    std::flush( std::cout );
-    #endif
 
     snprintf(outName, 256, "Basic WASM Plugin Example");
     snprintf(outSig,  256, "wasm_xpl/examples/wasm_plugin_basic");
     snprintf(outDesc, 256, "Bare min SDK functionality test.");
 
-    
+
+    // This will log using XPLMDebugString(..)
     log_raw("wasm/ plugin_start()\n");
 
 
