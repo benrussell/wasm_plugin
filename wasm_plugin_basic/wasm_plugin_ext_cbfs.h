@@ -19,12 +19,35 @@ struct TestStructure{
 
 
 
-void test_cbf(){
-    printf("wasm/ test_cbf() exec!\n");
+float test_cbf1( 
+                float inElapsedSinceLastCall, 
+                float inElapsedTimeSinceLastFlightLoop, 
+                int inCounter, 
+                void *inRefcon
+ ){
+    printf("wasm/ test_cbf1 AAAA()\n  since last call: %f\n  since last fl: %f\n  counter: %i\n  refcon: %p\n", 
+        inElapsedSinceLastCall,
+        inElapsedTimeSinceLastFlightLoop,
+        inCounter,
+        inRefcon
+    );
+    return 0.5f;
 }
 
-void test_cbf2(){
-    printf("wasm/ test_cbf2() exec!&******************\n");
+
+float test_cbf2( 
+                float inElapsedSinceLastCall, 
+                float inElapsedTimeSinceLastFlightLoop, 
+                int inCounter, 
+                void *inRefcon
+ ){
+    printf("wasm/ test_cbf2 BBBB()\n  since last call: %f\n  since last fl: %f\n  counter: %i\n  refcon: %p\n", 
+        inElapsedSinceLastCall,
+        inElapsedTimeSinceLastFlightLoop,
+        inCounter,
+        inRefcon
+    );
+    return 1.5f;
 }
 
 
@@ -43,6 +66,12 @@ void test_cbfs(){
     
     printf("wasm/ calling cb_reg cbf2..\n");
     cb_reg( (int32_t) &test_cbf2 );
+
+    printf("wasm/ calling cb_reg cbf1..\n");
+    cb_reg( (int32_t) &test_cbf1 );
+
+
+
 
 }
 
