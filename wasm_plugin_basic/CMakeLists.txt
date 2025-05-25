@@ -38,5 +38,5 @@ set(EXPORT_FLAGS "${EXPORT_FLAGS} -Wl,--no-entry")
 add_executable(wasm_plugin_basic.wasm wasm_plugin_basic.cpp wasm_plugin_basic.h)
 
 set_target_properties(wasm_plugin_basic.wasm PROPERTIES
-	LINK_FLAGS "${EXPORT_FLAGS}"
+	LINK_FLAGS "${EXPORT_FLAGS} -Wl,--export-table"
 )

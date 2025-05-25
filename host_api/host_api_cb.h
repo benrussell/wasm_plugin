@@ -11,7 +11,7 @@ extern "C" {
         ret_type cb_##name(__VA_ARGS__);
 
     //CMD_IMPORT(int64_t, find, const char*)    
-    CB_IMPORT(int64_t, reg, int32_t)
+    CB_IMPORT(int64_t, reg, int32_t, int32_t )
     CB_IMPORT(void, unreg, int64_t)
     
 }

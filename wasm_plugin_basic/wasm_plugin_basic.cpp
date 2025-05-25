@@ -66,13 +66,13 @@ void plugin_stop(){
 int plugin_enable(){
     printf("wasm/ plugin_enable() msg_counter: %llu\n", msg_counter);
 
-    test_drefs();
+    //test_drefs();
 
-    test_cmds();
+    //test_cmds();
 
     test_cbfs();
     
-    test_vfs();
+    //test_vfs();
 
     return msg_counter;
 }

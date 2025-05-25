@@ -1,3 +1,4 @@
 /wasm_plugin_basic/build
 /wasm_plugin_basic/cmake-build-debug
 /.idea
+/build
