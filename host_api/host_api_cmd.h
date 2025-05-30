@@ -6,7 +6,7 @@
 extern "C" {
 
     #define CMD_IMPORT(ret_type, name, ...) \
-        __attribute__((import_module("cmd"))) \
+        __attribute__((import_module("waxi_cmd@1"))) \
         __attribute__((import_name(#name))) \
         ret_type cmd_##name(__VA_ARGS__);
 

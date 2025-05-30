@@ -6,7 +6,7 @@
 extern "C" {
 
     #define CB_IMPORT(ret_type, name, ...) \
-        __attribute__((import_module("cb"))) \
+        __attribute__((import_module("waxi_cb@1"))) \
         __attribute__((import_name(#name))) \
         ret_type cb_##name(__VA_ARGS__);
 

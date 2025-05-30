@@ -6,7 +6,7 @@
 extern "C" {
 
     #define DREF_IMPORT(ret_type, name, ...) \
-        __attribute__((import_module("dref"))) \
+        __attribute__((import_module("waxi_dref@1"))) \
         __attribute__((import_name(#name))) \
         ret_type dref_##name(__VA_ARGS__);
 
