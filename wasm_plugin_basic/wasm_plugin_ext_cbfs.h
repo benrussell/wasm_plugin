@@ -31,10 +31,10 @@ float test_cbf1(
                 void *inRefcon
  ){
 
-    printf("fn_a rc: %p  glob: %p\n", inRefcon, fn_a_data);
+    printf("wasm/ fn_a rc: %p  global: %p\n", inRefcon, fn_a_data);
 
-    printf("fn_a refcon: [%s]\n", (char*)inRefcon);
-    printf("fn_a glob: [%s]\n", fn_a_data);
+    //printf("fn_a refcon: [%s]\n", (char*)inRefcon);
+    //printf("fn_a glob: [%s]\n", fn_a_data);
 
     // printf("wasm/ test_cbf1 AAAA()\n  since last call: %f\n  since last fl: %f\n  counter: %i\n  refcon: %p\n", 
     //     inElapsedSinceLastCall,
@@ -42,7 +42,9 @@ float test_cbf1(
     //     inCounter,
     //     inRefcon
     // );
-    return 0.5f;
+    // return 0.5f;
+
+    return 0.f;
 }
 
 
@@ -52,13 +54,15 @@ float test_cbf2(
                 int inCounter, 
                 void *inRefcon
  ){
-    printf("wasm/ test_cbf2 BBBB()\n  since last call: %f\n  since last fl: %f\n  counter: %i\n  refcon: %p\n", 
+    printf("wasm/ test_cbf2 BBBB(),  since call: %f,  time since last fl: %f,  counter: %i,  refcon: %p\n", 
         inElapsedSinceLastCall,
         inElapsedTimeSinceLastFlightLoop,
         inCounter,
         inRefcon
     );
-    return 1.5f;
+    // return 1.5f;
+
+    return 0.f;
 }
 
 
@@ -68,10 +72,10 @@ void test_cbfs(){
     TestStructure s; //FIXME: rename this struct def
     s.snafu = "situ normal";
     s.fubar = "fouled up";
-    printf("wasm/ stack ptr for some_str instance: %p\n", &s);
+    //printf("wasm/ stack ptr for some_str instance: %p\n", &s);
 
     TestStructure* ptr_s = new TestStructure();
-    printf("wasm/ heap ptr for some_str instance: %p\n", ptr_s);
+    //printf("wasm/ heap ptr for some_str instance: %p\n", ptr_s);
     delete( ptr_s );
     
 
