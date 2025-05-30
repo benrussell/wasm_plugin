@@ -72,6 +72,8 @@ int plugin_enable(){
 
     test_cbfs();
     
+    test_draw_cbs();
+
     //test_vfs();
 
     return msg_counter;

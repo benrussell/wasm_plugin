@@ -95,4 +95,24 @@ void test_cbfs(){
     
 }
 
+
+
+
+
+int draw_callback( int phase, int is_before, void* refcon ){
+
+    printf("wasm/ draw_callback fired\n");
+    return 1; //ret 1 to keep drawing.
+}
+
+
+void test_draw_cbs(){
+    printf("wasm/ calling cb_reg_draw.. ***************\n");
+    cb_reg_draw( (int32_t)&draw_callback, NULL );
+}
+
+
+
+
+
 #endif
