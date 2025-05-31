@@ -20,7 +20,9 @@
 
 
 
-
+#include "nanovg.h"
+NVGcontext* g_ctx;
+    
 
 int main(void){
     //printf("wasm_nvg/ main() is required by WASI _start()\n");
@@ -36,6 +38,28 @@ int plugin_start(char* outName, char* outSig, char* outDesc) {
     snprintf(outDesc, 256, "NanoVG Drawing API Test");
 
     log_raw("wasm_nvg/ plugin_start()\n");
+
+
+    printf("wasm_nvg/ Creating NVG context inside WASM! ******************\n");
+    NVGparams p;
+    p.userPtr = 1; // context handle
+    p.edgeAntiAlias = true;
+    p.renderCreate = nvg_proxy_xpRenderCreate;
+    //p.renderCreateTexture = nvg_proxy_xpRenderCreateTexture;
+    // p.renderDeleteTexture = nvg_proxy_xpRenderDeleteTexture;
+    // p.renderUpdateTexture = nvg_proxy_xpRenderUpdateTexture;
+    // p.renderGetTextureSize = nvg_proxy_xpRenderGetTextureSize;
+    p.renderViewport = nvg_proxy_xpRenderViewport;
+    p.renderCancel = nvg_proxy_xpRenderCancel;
+    p.renderFlush = nvg_proxy_xpRenderFlush;
+    //p.renderFill = nvg_pro
+    //p.renderStore
+    //p.renderTriangles
+    p.renderDelete = nvg_proxy_xpRenderDelete;
+
+    
+    g_ctx = nvgCreateInternal(&p);
+
     
     return 1;
 }
@@ -58,7 +82,7 @@ int plugin_enable(){
     printf("wasm_nvg/ plugin_enable()");
 
     
-    test_nvg();
+    test_draw_cbs();
 
 
     return 1;

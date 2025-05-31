@@ -7,8 +7,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(INC_HOST_API ${CMAKE_SOURCE_DIR}/../host_api)
 
+set(INC_NVG third_party/nanovg-master/src/)
+
+
 include_directories(
         ${INC_HOST_API}
+		${INC_NVG}
         )
 
 
@@ -35,7 +39,17 @@ set(EXPORT_FLAGS "${EXPORT_FLAGS} -Wl,--no-entry")
 
 
 
-add_executable(wasm_plugin_nvg.wasm wasm_plugin_nvg.cpp wasm_plugin_nvg.h)
+
+
+set( SRC_FILES 
+	wasm_plugin_nvg.cpp   wasm_plugin_nvg.h
+	nanovg.c  nanovg.h
+)
+
+
+
+
+add_executable(wasm_plugin_nvg.wasm ${SRC_FILES})
 
 set_target_properties(wasm_plugin_nvg.wasm PROPERTIES
 	LINK_FLAGS "${EXPORT_FLAGS} -Wl,--export-table"

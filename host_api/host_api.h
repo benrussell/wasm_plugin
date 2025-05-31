@@ -18,3 +18,7 @@
 #include "host_api_dref.h"
 #include "host_api_gfx.h"
 #include "host_api_log.h"
+
+#include "host_api_nvg_proxy.h"
+
+

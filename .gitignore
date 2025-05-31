@@ -2,3 +2,7 @@
 /wasm_plugin_basic/cmake-build-debug
 /.idea
 /build
+
+
+/wasm_plugin_nvg/build
+/wasm_plugin_nvg/third_party
