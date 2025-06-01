@@ -2295,6 +2295,10 @@ void nvgStroke(NVGcontext* ctx)
 	else
 		nvg__expandStroke(ctx, strokeWidth*0.5f, 0.0f, state->lineCap, state->lineJoin, state->miterLimit);
 
+
+	printf("wasm/nanovg/nvgStroke/calling renderStroke: &comp_wptr: %p\n:", &(state->compositeOperation));
+	printf("wasm/nanovg/nvgStroke/calling renderStroke: comp_wptr: %p\n:", state->compositeOperation);
+
 	ctx->params.renderStroke(ctx->params.userPtr, &strokePaint, state->compositeOperation, &state->scissor, ctx->fringeWidth,
 							 strokeWidth, ctx->cache->paths, ctx->cache->npaths);
 
