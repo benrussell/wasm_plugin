@@ -42,7 +42,8 @@ int plugin_start(char* outName, char* outSig, char* outDesc) {
 
     printf("wasm_nvg/ Creating NVG context inside WASM! ******************\n");
     NVGparams p;
-    p.userPtr = 1; // context handle
+    p.userPtr = nvg_proxy_getContextHandle(); // context handle
+    printf("wasm/plugin_start: nvg_proxy_getContextHandle: %llu\n", p.userPtr);
     p.edgeAntiAlias = true;
     p.renderCreate = nvg_proxy_xpRenderCreate;
     p.renderCreateTexture = nvg_proxy_xpRenderCreateTexture;

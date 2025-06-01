@@ -27,6 +27,8 @@ extern "C" {
         void (*renderDelete)(void* uptr);
     #endif
 
+    NVGP_IMPORT(uint64_t, getContextHandle)
+
     NVGP_IMPORT(int, xpRenderCreate, uint64_t uptr)
     NVGP_IMPORT(int, xpRenderCreateTexture, uint64_t uptr, int type, int w, int h, int imageFlags, const unsigned char* data)
     NVGP_IMPORT(int, xpRenderDeleteTexture, uint64_t uptr, int image)
