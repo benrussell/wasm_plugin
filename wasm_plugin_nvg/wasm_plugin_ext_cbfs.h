@@ -11,6 +11,12 @@
 
 
 
+#include "nanovg.h"
+extern NVGcontext* g_ctx;
+    
+
+
+
 
 float test_cbf( 
                 float inElapsedSinceLastCall, 
@@ -79,6 +85,70 @@ int draw_callback( int phase, int is_before, void* refcon ){
     }
 
     gfx_draw_dbg_tri( xp, yp );
+
+
+
+
+
+
+
+
+    auto lam_drawRose = [](auto vg){
+// Draw tick marks around a circle
+		float centerX = 800 / 2;
+		float centerY = 600 / 2;
+		float radius = 200;
+		float tickLength = 20;
+
+
+		// Save the current transformation state
+		nvgSave(vg);
+
+		// Translate to the center of the circle
+		nvgTranslate(vg, centerX, centerY);
+
+		// Apply the rotation transformation
+		//nvgRotate(vg, dr_heading->getFloat());
+        nvgRotate(vg, 7.f);
+
+		// Translate back to the original position
+		nvgTranslate(vg, -centerX, -centerY);
+
+		for (int i = 0; i < 12; ++i) {
+			float angle = (i / 12.0f) * NVG_PI * 2;
+			float x1 = centerX + cos(angle) * radius;
+			float y1 = centerY + sin(angle) * radius;
+			float x2 = centerX + cos(angle) * (radius - tickLength);
+			float y2 = centerY + sin(angle) * (radius - tickLength);
+
+			nvgBeginPath(vg);
+			nvgMoveTo(vg, x1, y1);
+			nvgLineTo(vg, x2, y2);
+			nvgStrokeColor(vg, nvgRGBA(255, 192, 0, 255));
+			nvgStrokeWidth(vg, 5.0f);
+			nvgStroke(vg);
+		}
+
+		nvgRestore(vg);
+
+	};
+
+    
+    nvgBeginFrame( g_ctx, 800, 600, 1.f );
+        lam_drawRose(g_ctx);
+    nvgEndFrame( g_ctx );
+
+
+
+
+
+
+
+
+
+
+
+
 
     //printf("wasm/ draw_callback fired\n");
     return 1; //ret 1 to keep drawing.

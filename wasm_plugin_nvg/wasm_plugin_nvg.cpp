@@ -60,9 +60,6 @@ int plugin_start(char* outName, char* outSig, char* outDesc) {
     
     g_ctx = nvgCreateInternal(&p);
 
-    nvgBeginFrame( g_ctx, 320, 240, 1.f );
-    nvgEndFrame( g_ctx );
-
     
     return 1;
 }
