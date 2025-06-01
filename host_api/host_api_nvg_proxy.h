@@ -1,5 +1,7 @@
 
 
+#include "../wasm_plugin_nvg/nanovg.h"
+
 
 #include <cstdint>
 
@@ -33,9 +35,9 @@ extern "C" {
     NVGP_IMPORT(void, xpRenderViewport, uint64_t uptr, float width, float height, float devicePixelRatio);
     NVGP_IMPORT(void, xpRenderCancel, uint64_t uptr);
     NVGP_IMPORT(void, xpRenderFlush, uint64_t uptr);
-    // NVGP_IMPORT(void, xpRenderFill, uint64_t uptr, NVGpaint* paint, NVGcompositeOperationState compositeOperation, NVGscissor* scissor, float fringe, const float* bounds, const NVGpath* paths, int npaths);
-    // NVGP_IMPORT(void, xpRenderStroke, uint64_t uptr, NVGpaint* paint, NVGcompositeOperationState compositeOperation, NVGscissor* scissor, float fringe, float strokeWidth, const NVGpath* paths, int npaths);
-    // NVGP_IMPORT(void, xpRenderTriangles, uint64_t uptr, NVGpaint* paint, NVGcompositeOperationState compositeOperation, NVGscissor* scissor, const NVGvertex* verts, int nverts, float fringe);
+    NVGP_IMPORT(void, xpRenderFill, uint64_t uptr, NVGpaint* paint, NVGcompositeOperationState compositeOperation, NVGscissor* scissor, float fringe, const float* bounds, const NVGpath* paths, int npaths);
+    NVGP_IMPORT(void, xpRenderStroke, uint64_t uptr, NVGpaint* paint, NVGcompositeOperationState compositeOperation, NVGscissor* scissor, float fringe, float strokeWidth, const NVGpath* paths, int npaths);
+    NVGP_IMPORT(void, xpRenderTriangles, uint64_t uptr, NVGpaint* paint, NVGcompositeOperationState compositeOperation, NVGscissor* scissor, const NVGvertex* verts, int nverts, float fringe);
     NVGP_IMPORT(void, xpRenderDelete, uint64_t uptr);
 
 

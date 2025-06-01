@@ -45,20 +45,23 @@ int plugin_start(char* outName, char* outSig, char* outDesc) {
     p.userPtr = 1; // context handle
     p.edgeAntiAlias = true;
     p.renderCreate = nvg_proxy_xpRenderCreate;
-    //p.renderCreateTexture = nvg_proxy_xpRenderCreateTexture;
-    // p.renderDeleteTexture = nvg_proxy_xpRenderDeleteTexture;
-    // p.renderUpdateTexture = nvg_proxy_xpRenderUpdateTexture;
-    // p.renderGetTextureSize = nvg_proxy_xpRenderGetTextureSize;
+    p.renderCreateTexture = nvg_proxy_xpRenderCreateTexture;
+    p.renderDeleteTexture = nvg_proxy_xpRenderDeleteTexture;
+    p.renderUpdateTexture = nvg_proxy_xpRenderUpdateTexture;
+    p.renderGetTextureSize = nvg_proxy_xpRenderGetTextureSize;
     p.renderViewport = nvg_proxy_xpRenderViewport;
     p.renderCancel = nvg_proxy_xpRenderCancel;
     p.renderFlush = nvg_proxy_xpRenderFlush;
-    //p.renderFill = nvg_pro
-    //p.renderStore
-    //p.renderTriangles
+    p.renderFill = nvg_proxy_xpRenderFill;
+    p.renderStroke = nvg_proxy_xpRenderStroke;
+    p.renderTriangles  = nvg_proxy_xpRenderTriangles;
     p.renderDelete = nvg_proxy_xpRenderDelete;
 
     
     g_ctx = nvgCreateInternal(&p);
+
+    nvgBeginFrame( g_ctx, 320, 240, 1.f );
+    nvgEndFrame( g_ctx );
 
     
     return 1;
