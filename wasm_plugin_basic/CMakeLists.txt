@@ -1,3 +1,8 @@
+
+# This needs to be before project()
+set(CMAKE_TOOLCHAIN_FILE $ENV{WASI_SDK_PATH}/share/cmake/wasi-sdk.cmake)
+
+
 cmake_minimum_required(VERSION 3.13)
 project(wasm_plugin_basic)
 
